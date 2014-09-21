@@ -27,19 +27,13 @@ run_analysis <- function() {
   nm <- names(mean_cols)
   ns <- names(std_cols)
   names <- c(nm, ns)
-  #features_new <- gsub("(^|[[:punct:]])([[:alpha:]])", "\\1\\U\\2", features[,2], perl=TRUE)
   features_new <- gsub("(^|[[:punct:]])([[:alpha:]])", "\\1\\U\\2", names, perl=TRUE)
   f <- gsub("-|\\()", "", features_new)
   f2 <- gsub("\\(", "From", f)
   f3 <- gsub("\\)", "", f2)
-  #f3[1:300] <- gsub(",", "", f3[1:300])
-  #f4 <- gsub(",", "To", f3)
   prelim_data <- cbind(mean_cols, std_cols)
   colnames(prelim_data) <- f3
 
-  
-  # mean_cols <- x[,names(x)[grep("Mean", names(x))]]
-  # std_cols <- x[,names(x)[grep("Std", names(x))]]
   
   # Merge all the data together (part 1)
   my_data <- cbind(subject, act, prelim_data)
